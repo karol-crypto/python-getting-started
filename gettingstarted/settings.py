@@ -64,7 +64,7 @@ if IS_HEROKU_APP:
     #    https://devcenter.heroku.com/articles/automated-certificate-management
     # 2. Your app's WSGI web server is configured to use the `X-Forwarded-Proto` headers set by
     #    the Heroku Router (otherwise you may encounter infinite HTTP 301 redirects). See this
-    #    app's `gunicorn.conf.py` for how this is done when using gunicorn.
+    #    apps `gunicorn.conf.py` for how this is done when using gunicorn.
     #
     # For maximum security, consider enabling HTTP Strict Transport Security (HSTS) headers too:
     # https://docs.djangoproject.com/en/6.0/ref/middleware/#http-strict-transport-security
