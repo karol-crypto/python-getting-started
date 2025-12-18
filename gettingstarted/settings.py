@@ -141,11 +141,10 @@ if IS_HEROKU_APP:
     # https://github.com/jazzband/dj-database-url
     DATABASES = {
         "default": dj_database_url.config(
-            env="DATABASE_URL",
-            conn_max_age=600,
-            conn_health_checks=True,
-            ssl_require=True,
-        ),
+             default=os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"),
+             conn_max_age=600,
+             conn_health_checks=True,
+         )
     }
 else:
     # When running locally in development or in CI, a sqlite database file will be used instead
