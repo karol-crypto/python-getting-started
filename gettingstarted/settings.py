@@ -50,13 +50,13 @@ DEBUG='TRUE'
 # also explicitly exclude CI:
 # https://devcenter.heroku.com/articles/heroku-ci#immutable-environment-variables
 IS_HEROKU_APP = "DYNO" in os.environ and "CI" not in os.environ
-
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "lab1-python-i3gm.onrender.com"]
 if IS_HEROKU_APP:
     # On Heroku, it's safe to use a wildcard for `ALLOWED_HOSTS`, since the Heroku router performs
     # validation of the Host header in the incoming HTTP request. On other platforms you may need to
     # list the expected hostnames explicitly in production to prevent HTTP Host header attacks. See:
     # https://docs.djangoproject.com/en/6.0/ref/settings/#std-setting-ALLOWED_HOSTS
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "lab1-python.onrender.com"]
+    #ALLOWED_HOSTS = ["*"]
 
     # Redirect all non-HTTPS requests to HTTPS. This requires that:
     # 1. Your app has a TLS/SSL certificate, which all `*.herokuapp.com` domains do by default.
@@ -68,9 +68,9 @@ if IS_HEROKU_APP:
     #
     # For maximum security, consider enabling HTTP Strict Transport Security (HSTS) headers too:
     # https://docs.djangoproject.com/en/6.0/ref/middleware/#http-strict-transport-security
-    SECURE_SSL_REDIRECT = not DEBUG
+    SECURE_SSL_REDIRECT = TRUE
 else:
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "lab1-python.onrender.com"]
+    ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0", "[::]"]
 
 
 # Application definition
@@ -140,11 +140,12 @@ if IS_HEROKU_APP:
     # https://devcenter.heroku.com/articles/provisioning-heroku-postgres#application-config-vars
     # https://github.com/jazzband/dj-database-url
     DATABASES = {
-        "default": dj_database_url.config(
-             default=os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"),
-             conn_max_age=600,
-             conn_health_checks=True,
-         )
+        "default": 
+             dj_database_url.config(
+                 default=os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"),
+                 conn_max_age=600,
+                 conn_health_checks=True,
+             )
     }
 else:
     # When running locally in development or in CI, a sqlite database file will be used instead
