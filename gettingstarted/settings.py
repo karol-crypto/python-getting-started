@@ -74,10 +74,6 @@ if IS_HEROKU_APP:
     # For maximum security, consider enabling HTTP Strict Transport Security (HSTS) headers too:
     # https://docs.djangoproject.com/en/6.0/ref/middleware/#http-strict-transport-security
     SECURE_SSL_REDIRECT = True
-else:
-    SECURE_SSL_REDIRECT = False
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", "0.0.0.0", "[::]"]
-
 
 # Application definition
 
