@@ -44,7 +44,7 @@ SECRET_KEY = os.environ.get(
 # Debug mode will be automatically enabled when the project is run via `heroku local` (which
 # loads the environment variables set in the `.env` file, where `ENVIRONMENT=development`).
 # SECURITY WARNING: Don't run with debug turned on in production!
-DEBUG='TRUE'
+DEBUG=True
 
 # The `DYNO` env var is set on Heroku CI, but it's not a real Heroku app, so we have to
 # also explicitly exclude CI:
@@ -69,7 +69,8 @@ if IS_HEROKU_APP:
     # https://docs.djangoproject.com/en/6.0/ref/middleware/#http-strict-transport-security
     SECURE_SSL_REDIRECT = True
 else:
-    ALLOWED_HOSTS = [".localhost", "127.0.0.1", "[::1]", "0.0.0.0", "[::]"]
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]", "0.0.0.0", "[::]"]
+    SECURE_SSL_REDIRECT = False
 
 
 # Application definition
